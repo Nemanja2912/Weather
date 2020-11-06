@@ -130,6 +130,12 @@ class App extends Component {
     });
   };
 
+  closeAdd = () => {
+    this.setState({
+      add: false,
+    });
+  };
+
   componentDidMount() {
     let api = `https://api.openweathermap.org/data/2.5/onecall?lat=${this.state.lat}&lon=${this.state.lon}&appid=f1f477110eac415ab17fb02931098b30&units=metric`;
 
@@ -163,8 +169,6 @@ class App extends Component {
         setInterval(() => {
           setData();
         }, 60000);
-
-        console.log("ok");
       });
   }
 
@@ -200,9 +204,10 @@ class App extends Component {
           pressure={this.state.pressure}
         />
 
-        <Add add={this.state.add} />
+        <Add add={this.state.add} closeAdd={this.closeAdd} />
 
         <Details
+          openAdd={this.openAdd}
           hours={this.state.hourly}
           week={this.state.week}
           icon={icon}
