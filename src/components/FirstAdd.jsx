@@ -5,7 +5,7 @@ cityList.sort((x, y) => x.name.length - y.name.length);
 
 let filterList = cityList;
 
-class Add extends Component {
+class FirstAdd extends Component {
   state = {
     city: [],
     button: "Cancle",
@@ -89,10 +89,7 @@ class Add extends Component {
 
   render() {
     return (
-      <div
-        style={{ display: this.props.add ? "block" : "none" }}
-        className="add"
-      >
+      <div style={{ display: "block" }} className="add">
         <div className="top">
           <p className="title">Enter city name to take information</p>
           <div className="input-box">
@@ -104,22 +101,6 @@ class Add extends Component {
                 ref={(input) => (this.inputEntry = input)}
               />
             </div>
-            <p
-              className="bold"
-              onClick={() => {
-                this.props.closeAdd();
-
-                this.setState({
-                  city: [],
-                });
-
-                this.inputEntry.value = "";
-
-                filterList = cityList;
-              }}
-            >
-              Cancel
-            </p>
           </div>
         </div>
         <div className="add-body">
@@ -130,4 +111,4 @@ class Add extends Component {
   }
 }
 
-export default Add;
+export default FirstAdd;

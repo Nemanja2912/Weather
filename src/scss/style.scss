@@ -405,3 +405,20 @@ header {
     }
   }
 }
+
+.error {
+  background-color: #8a2828ec;
+  position: absolute;
+  top: -100px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: max-content;
+  padding: 15px;
+  text-align: center;
+  transition: 0.5s;
+}
+
+.error-open {
+  top: 0;
+}

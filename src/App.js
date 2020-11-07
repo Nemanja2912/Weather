@@ -4,6 +4,8 @@ import Info from "./components/Info";
 import Screen from "./components/Screen";
 import Details from "./components/Details";
 import Add from "./components/Add";
+import Error from "./components/Error";
+import FirstAdd from "./components/FirstAdd";
 
 let icon = [
   {
@@ -106,8 +108,11 @@ class App extends Component {
     forecast: true,
     height: window.innerHeight,
     add: false,
-    lat: "44.804",
-    lon: "20.4651",
+    lat: `${localStorage.getItem("lat")}`,
+    lon: `${localStorage.getItem("lon")}`,
+    location: `${localStorage.getItem("name")}`,
+    error: false,
+    firstAdd: localStorage.getItem("lat") === null ? true : false,
   };
 
   openWeek = () => {
@@ -140,7 +145,13 @@ class App extends Component {
     this.setState({
       lat: `${e.target.getAttribute("lat")}`,
       lon: `${e.target.getAttribute("lon")}`,
+      location: `${e.target.getAttribute("name")}`,
+      firstAdd: false,
     });
+
+    localStorage.setItem("lat", e.target.getAttribute("lat"));
+    localStorage.setItem("lon", e.target.getAttribute("lon"));
+    localStorage.setItem("name", e.target.getAttribute("name"));
 
     setTimeout(() => {
       this.loadApi();
@@ -157,7 +168,6 @@ class App extends Component {
           this.setState({
             data: data,
             temp: data.current.temp.toFixed(),
-            location: data.timezone,
             desc: data.current.weather[0].main,
             icon: icon.filter((x) => x.id === data.current.weather[0].icon)[0]
               .icon,
@@ -176,10 +186,23 @@ class App extends Component {
         };
 
         setData();
+      })
+      .catch((error) => {
+        this.setState({
+          error: true,
+        });
+
+        setTimeout(() => {
+          this.setState({
+            error: false,
+          });
+        }, 3000);
       });
   };
 
   componentDidMount() {
+    if (this.state.firstAdd) return;
+
     this.loadApi();
   }
 
@@ -191,6 +214,15 @@ class App extends Component {
         }}
         className={this.state.image + " App"}
       >
+        {this.state.firstAdd ? (
+          <FirstAdd
+            closeAdd={this.closeAdd}
+            handleLocation={this.handleLocation}
+          />
+        ) : (
+          ""
+        )}
+
         <header>
           <p>
             <i onClick={this.openAdd} className="fas fa-plus"></i>
@@ -230,6 +262,8 @@ class App extends Component {
           openForecast={this.openForecast}
           color={this.state.color}
         />
+
+        <Error error={this.state.error} />
       </div>
     );
   }
