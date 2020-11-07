@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import cityList from "../json/city.list.json";
 
+cityList.sort((x, y) => x.name.length - y.name.length);
+
 let filterList = cityList;
 
 class Add extends Component {
@@ -23,20 +25,43 @@ class Add extends Component {
       );
     }
 
-    if (typeLength === 1) {
+    if (typeLength < this.state.length || typeLength === 0) {
       filterList = cityList;
+      filterList = filterList.filter((city) =>
+        city.name
+          .split("")
+          .splice(0, e.target.value.length)
+          .join("")
+          .includes(e.target.value)
+      );
     }
 
     if (typeLength >= 2) {
       this.setState({
-        city: filterList.map((city) => (
-          <p>
-            {city.name}, {city.country}
+        city: filterList.slice(0, 20).map((city) => (
+          <p
+            onClick={(e) => {
+              this.props.closeAdd();
+              this.props.handleLocation(e);
+            }}
+          >
+            <span lon={city.coord.lon} lat={city.coord.lat} className="bold">
+              {city.name.split("").splice(0, e.target.value.length).join("")}
+            </span>
+            <span lon={city.coord.lon} lat={city.coord.lat} className="opacity">
+              {city.name
+                .split("")
+                .splice(e.target.value.length, city.name.split("").length - 1)
+                .join("")}
+              , {city.country}
+            </span>
           </p>
         )),
         length: typeLength,
       });
     }
+
+    console.log();
   };
 
   render() {

@@ -144,6 +144,7 @@ header .right {
 }
 
 .title-line .title {
+  font-weight: bold;
   width: -webkit-max-content;
   width: -moz-max-content;
   width: max-content;
@@ -182,7 +183,7 @@ header .right {
 }
 
 .screen .location {
-  opacity: 50%;
+  opacity: 0.5;
   font-size: 12px;
 }
 
@@ -229,7 +230,7 @@ header .right {
 }
 
 .info .info-area .box .opacity {
-  opacity: 50%;
+  opacity: 0.5;
 }
 
 .info .info-area .box i {
@@ -323,7 +324,7 @@ header .right {
 }
 
 .details div .tommorow .box .right .min {
-  opacity: 70%;
+  opacity: 0.7;
   margin-right: 15px;
 }
 
@@ -423,7 +424,7 @@ header .right {
 }
 
 .details div .next-days .box .right div .opacity {
-  opacity: 70%;
+  opacity: 0.7;
   margin-right: 10px;
 }
 
@@ -488,4 +489,12 @@ header .right {
 
 .add .add-body p {
   margin-bottom: 10px;
+}
+
+.add .add-body .opacity {
+  opacity: 0.7;
+}
+
+.add .add-body .bold {
+  font-weight: bold;
 }

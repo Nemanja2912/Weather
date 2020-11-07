@@ -136,7 +136,18 @@ class App extends Component {
     });
   };
 
-  componentDidMount() {
+  handleLocation = (e) => {
+    this.setState({
+      lat: `${e.target.getAttribute("lat")}`,
+      lon: `${e.target.getAttribute("lon")}`,
+    });
+
+    setTimeout(() => {
+      this.loadApi();
+    }, 100);
+  };
+
+  loadApi = () => {
     let api = `https://api.openweathermap.org/data/2.5/onecall?lat=${this.state.lat}&lon=${this.state.lon}&appid=f1f477110eac415ab17fb02931098b30&units=metric`;
 
     fetch(api)
@@ -165,11 +176,11 @@ class App extends Component {
         };
 
         setData();
-
-        setInterval(() => {
-          setData();
-        }, 60000);
       });
+  };
+
+  componentDidMount() {
+    this.loadApi();
   }
 
   render() {
@@ -204,7 +215,11 @@ class App extends Component {
           pressure={this.state.pressure}
         />
 
-        <Add add={this.state.add} closeAdd={this.closeAdd} />
+        <Add
+          add={this.state.add}
+          closeAdd={this.closeAdd}
+          handleLocation={this.handleLocation}
+        />
 
         <Details
           openAdd={this.openAdd}
