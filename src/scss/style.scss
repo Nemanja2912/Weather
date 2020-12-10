@@ -78,6 +78,11 @@
   padding: 0;
 }
 
+body {
+  max-width: 768px;
+  margin: auto;
+}
+
 .App {
   color: #fff;
   font-size: 16px;
@@ -421,4 +426,24 @@ header {
 
 .error-open {
   top: 0;
+}
+
+.loading {
+  background-color: #212121;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  img {
+    width: 250px;
+  }
+}
+
+.cursor {
+  cursor: pointer;
 }

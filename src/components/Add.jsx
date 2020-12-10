@@ -105,7 +105,7 @@ class Add extends Component {
               />
             </div>
             <p
-              className="bold"
+              className="bold cursor"
               onClick={() => {
                 this.props.closeAdd();
 
@@ -123,7 +123,9 @@ class Add extends Component {
           </div>
         </div>
         <div className="add-body">
-          <p>{this.state.city.length > 0 ? this.state.city : ""}</p>
+          <p className=" cursor">
+            {this.state.city.length > 0 ? this.state.city : ""}
+          </p>
         </div>
       </div>
     );

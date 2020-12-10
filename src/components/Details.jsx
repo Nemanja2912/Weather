@@ -42,11 +42,11 @@ class Details extends Component {
       >
         <header>
           <p>
-            <i onClick={this.props.openAdd} className="fas fa-plus"></i>
+            <i onClick={this.props.openAdd} className="fas fa-plus  cursor"></i>
           </p>
           <p>Weather Forecast</p>
           <p className="right" onClick={this.props.openForecast}>
-            <i className="fas fa-times"></i>
+            <i className="fas fa-times  cursor"></i>
           </p>
         </header>
         <div>

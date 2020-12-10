@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import "./css/style.css";
 import Info from "./components/Info";
 import Screen from "./components/Screen";
 import Details from "./components/Details";
@@ -102,6 +101,7 @@ let icon = [
 
 class App extends Component {
   state = {
+    weather: window.innerHeight,
     hourly: [],
     days: undefined,
     week: false,
@@ -209,9 +209,7 @@ class App extends Component {
   render() {
     return (
       <div
-        style={{
-          height: this.state.height + "px",
-        }}
+        style={{ height: this.state.height }}
         className={this.state.image + " App"}
       >
         {this.state.firstAdd ? (
@@ -225,10 +223,10 @@ class App extends Component {
 
         <header>
           <p>
-            <i onClick={this.openAdd} className="fas fa-plus"></i>
+            <i onClick={this.openAdd} className="fas fa-plus  cursor"></i>
           </p>
           <p>Weather Forecast</p>
-          <p className="right" onClick={this.openWeek}>
+          <p className="right  cursor" onClick={this.openWeek}>
             <i className="fas fa-bars"></i>
           </p>
         </header>
